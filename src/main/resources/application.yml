@@ -1,0 +1,35 @@
+# 服务端口
+server:
+  port: 8761
+
+# 服务名字
+spring:
+  application:
+    name: EurekaServer
+
+# Eureka 配置
+eureka:
+  dashboard:
+    enabled: true
+  instance:
+    hostname: 127.0.0.1
+  client:
+    # 是否将自己注册为服务
+    registerWithEureka: false
+    #是否禁止向注册中心检索服务
+    fetchRegistry: false
+    #服务地址
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 自我保护机制
+    enable-self-preservation: false
+    # 自我保护系数（默认0.85）
+    renewal-percent-threshold: 0.85
+    # 扫描失效服务时间间隔（单位毫秒，默认60*1000）60秒
+    eviction-interval-timer-in-ms: 30000
+    # 设置eureka server同步失败的等待时间，默认5分钟，在这期间它不向客户端提供服务注册信息
+    wait-time-in-ms-when-sync-empty: 5
+    # 设置eureka server同步失败的重试次数，默认为5次
+    number-of-replication-retries: 5
+
